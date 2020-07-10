@@ -1,0 +1,37 @@
+<div class="container">
+  <%= link_to "Add New Product", new_product_path, class: "btn btn-primary" %> 
+
+  <h3 class="pt-2 pb-2">Products</h3>
+
+  <% @products.each do |product| %>
+    <div class="card pl-3 pt-1 mt-3">
+      <div class="row">
+        <span class="col-sm-2">Title:</span>
+        <div class="col-sm-10">
+          <%= product.title %>  
+        </div>
+      </div>
+
+      <div class="row">
+        <span class="col-sm-2">Description:</span>
+        <div class="col-sm-10">
+          <%= product.description %>  
+        </div>
+      </div>
+
+
+      <b>Variations</b>
+
+    <% product.variants.each do |variant| %>
+      <ul>
+        <li>SKU: <%= variant.sku %></li>
+        <li>Quantity: <%= variant.quantity %></li>
+        <li>Price: <%= variant.price %></li>
+        <% variant.option_values.group_by(&:option_id).each do |key, value| %>
+          <li><%= value.first.option.name %> : <%= value.map(&:name).join(" , ") %></li>
+        <% end %><br>
+      </ul>
+    <% end %>
+    </div>
+  <% end %>
+</div>

@@ -12,6 +12,7 @@ Things you may want to cover:
 
 * Database initialization
 `rake db:migrate`
+`rake db:seed`
 
 * How to run the app
 `rails s`
